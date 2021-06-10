@@ -19,7 +19,6 @@ def print_rules():
     Print(board_grid)
     return
 
-
 def shift_the_stones(slot_number,player,board,steal=True):
 
     virtual_board = board.copy()
@@ -82,3 +81,15 @@ def check_does_player_finish(board):
         if sum == 6:
             return True
     return False
+
+def end_board(player,board):
+    player1_slots = [ 1, 2, 3, 4, 5, 6]
+    player2_slots = [13,12,11,10, 9, 8]
+    if player == "player1":
+        for x in player2_slots:
+            board[0] += board[x]
+            board[x] = 0
+    if player == "player2":
+        for x in player1_slots:
+            board[7] += board[x]
+            board[x] = 0
