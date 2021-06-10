@@ -1,3 +1,24 @@
+from termtables import print as Print
+
+def print_grid(board):
+    board_grid = [
+        ['', board[6],board[5],board[4],board[3],board[2],board[1],''],
+        [board[7], '','','','','','',board[0]],
+        ['', board[8],board[9],board[10],board[11],board[12],board[13],''],
+    ]
+    Print(board_grid)
+
+def print_rules():
+
+    board_grid = [
+        ['', 6,5,4,3,2,1,''],
+        ["Ai's mancala", '','','','','','',"Your mancala"],
+        ['slots to choose from ->', 8,9,10,11,12,13,'<-'],
+    ]
+    
+    Print(board_grid)
+    return
+
 
 def shift_the_stones(slot_number,player,board,steal=True):
 
