@@ -13,7 +13,7 @@ python Game.py
 ### using Executable binary (Windows)
 
 #### note:
-windows default antivirus concider the executable file a potential threat so it is recommended to deactivate it or use python
+windows default antivirus consider the executable file a potential threat so it is recommended to deactivate it or use python
 
 ```
 ./Mancala.exe
