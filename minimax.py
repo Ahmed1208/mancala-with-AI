@@ -40,3 +40,9 @@ def evaluate(board):
         count1 += board[i]
         count2 += board[i+7]
     return count1 - count2
+	
+def indexToSlot(board,newboard):
+    out = newboard.copy()
+    for i in range(len(board)):
+        out[i] = board[i] - newboard[i]
+    return -max((x,-i) for i,x in enumerate(out))[1]
