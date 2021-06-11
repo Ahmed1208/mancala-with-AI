@@ -1,4 +1,5 @@
 from termtables import print as Print
+from pickle import load
 
 def print_grid(board):
     board_grid = [
@@ -117,3 +118,58 @@ def all_possibles(board,player,steal):
                 possible_boards.append([virtual_board, False])
 
     return possible_boards
+
+def settings():
+    board = [0,4,4,4,4,4,4,0,4,4,4,4,4,4]
+    gameLoaded = False
+    mode = None
+    while mode == None:
+        mode = input("\tn: New Game, l: Load Game\n")
+        if mode == 'n':
+            break
+        elif mode == 'l':
+            try:
+                with open("load.manc",'rb') as f:
+                    data = load(f)
+                    board,Steal,diff = data['board'],data['Steal'],data['diff']
+                    player_turn = 'player2'
+                gameLoaded = True
+            except:
+                print("no board to be loaded, new game:")
+        else:
+            print("retry")
+
+    if gameLoaded == False:
+        player_turn = None
+        while player_turn == None:
+            whichTurn = input("\ty: AI starts, n: you start\n")
+            if whichTurn == 'y':
+                player_turn = "player1"
+            elif whichTurn == 'n':
+                player_turn = "player2"
+            else:
+                print("retry")
+        
+        Steal = None
+        while Steal != True and Steal != False:
+            withSteal = input("\ty: with steal, n: without steal\n")
+            if withSteal == 'y':
+                Steal = True
+            elif withSteal == 'n':
+                Steal = False
+            else:
+                print("retry")
+        
+        diff = None
+        while diff == None:
+            diff = input("difficulty:\n\te: easy, m: medium, h:hard\n")
+            if diff == 'e':
+                diff = 2
+            elif diff == 'm':
+                diff = 5
+            elif diff == 'h':
+                diff = 9
+            else:
+                print("retry")
+
+    return player_turn,Steal,diff,board
