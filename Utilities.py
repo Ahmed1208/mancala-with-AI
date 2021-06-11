@@ -93,3 +93,27 @@ def end_board(player,board):
         for x in player1_slots:
             board[7] += board[x]
             board[x] = 0
+
+def all_possibles(board,player,steal):
+
+    possible_boards = []
+    player1_slots = [ 1, 2, 3, 4, 5, 6]
+    player2_slots = [13,12,11,10, 9, 8]
+    slots = 0
+    if player == "player1":
+        slots = player1_slots
+    else:
+        slots = player2_slots
+
+    for x in slots:
+        virtual_board = board.copy()
+        if virtual_board[x] == 0 :
+            pass
+        else:
+            another_turn, virtual_board = shift_the_stones(x,player,virtual_board)
+            if another_turn:
+                possible_boards.append([virtual_board, True])
+            else:
+                possible_boards.append([virtual_board, False])
+
+    return possible_boards
